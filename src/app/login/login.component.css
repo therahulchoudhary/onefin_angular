@@ -1,0 +1,16 @@
+.custom_form_header {
+    background-color: #1abc9c;
+    color:white;
+    font-weight: 600;
+    font-size: 22px;
+}
+.custom_card {
+    box-shadow: 0 0 20px lightgrey;
+}
+.main_container {
+    height:100vh;
+    background-image: url('../../assets/login_background.svg');
+    background-size: 300px 200px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}

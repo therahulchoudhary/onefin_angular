@@ -1,0 +1,29 @@
+<div class="container d-flex align-items-center main_container">
+    <div class="card m-auto w-50 custom_card">
+        <div class="card-header text-center custom_form_header">
+            Login
+        </div>
+        <form class="p-3" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <div class="form-group">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid':this.error.emailError == true}"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username"
+                    formControlName="username">
+                <div *ngIf="error.emailError" [ngClass]="{'invalid-feedback':this.error.emailError == true}"
+                    class="text-right">Username
+                    Required*</div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" [ngClass]="{'is-invalid':this.error.passwordError == true}"
+                    id="exampleInputPassword1" placeholder="Password" formControlName="password">
+                <div *ngIf="error.passwordError" [ngClass]="{'invalid-feedback':this.error.passwordError == true}"
+                    class="text-right">
+                    Password
+                    Required*</div>
+            </div>
+            <p *ngIf="requestError" class="alert alert-danger">{{requestError}}</p>
+            <div class="w-25 m-auto">
+                <button type="submit" class="w-100 primary_button" [disabled]="inService">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

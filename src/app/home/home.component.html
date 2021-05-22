@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 pt-4">
+    <div *ngIf="filteredData" class="row justify-content-end">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="form-outline w-100">
+                    <input type="search" id="form1" class="form-control" placeholder="Search Movie by title"
+                        (keyup)="searchMovie($event)" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 my-3" *ngFor="let item of filteredData;index as i">
+            <div class="card p-3 m-auto w-100" style="width: 18rem;cursor: pointer;" (click)="showModal(item)">
+                <div style="display:flex;padding-bottom: 20px;">
+                    <div class="w-25 mr-2" style="border-radius:50%">
+                        <img class="card-img-top"
+                            src="https://ui-avatars.com/api/?name={{item.title.split(' ').join('+')}}"
+                            alt="Card image cap" width="100%" style="border-radius:50%">
+                    </div>
+                    <div>
+                        <p class="card_title">{{item.title}}</p>
+                        <div *ngIf="item.genres">
+                            <span class="badge badge-secondary mr-1"
+                                *ngFor="let element of item.genres.split(',')">{{element}}
+                            </span>
+                        </div>
+                        <span *ngIf="!item.genres" class="badge badge-secondary mr-1">
+                            No Genre Available
+                        </span>
+                    </div>
+                </div>
+                <p class="description_text">{{item.description}}</p>
+                <p *ngIf="!item.description" class="description_text">No Description</p>
+            </div>
+        </div>
+        <div *ngIf="!filteredData" class="col-md-4 m-auto text-center">
+            <p>No Items Available!</p>
+            <button class="btn btn-light" (click)="refresh()">Refresh</button>
+        </div>
+    </div>
+    <div *ngIf="filteredData" class="text-center my-4">
+        <p *ngIf="filteredData.length==0">Nothing to show!</p>
+        <button class="btn btn-light " (click)="loadMore()">Load More</button>
+    </div>
+    <div class="overlay" *ngIf="modalVisible">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="close align-self-end pt-1" style="width: 10%;" data-dismiss="modal"
+                    aria-label="Close" (click)="showModal(currentItem)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <div style="display:flex;padding-bottom: 20px;">
+                        <div class="w-25 mr-2" style="border-radius:50%">
+                            <img class="card-img-top"
+                                src="https://ui-avatars.com/api/?name={{currentItem.title.split(' ').join('+')}}"
+                                alt="Card image cap" width="100%">
+                        </div>
+                        <div>
+                            <p style="font-weight:600;font-size:24px;margin:0;">{{currentItem.title}}</p>
+                            <div *ngIf="currentItem.genres">
+                                <span class="badge badge-secondary mr-1"
+                                    *ngFor="let element of currentItem.genres.split(',')">{{element}}
+                                </span>
+                            </div>
+                            <span *ngIf="!currentItem.genres" class="badge badge-secondary mr-1">
+                                No Genre Available
+                            </span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <p class="">{{currentItem.description}}</p>
+                    <p *ngIf="!currentItem.description" class="description_text">No Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.primary_button {
+    background-color: #1abc9c;
+    border:0;
+    color:white;
+    padding:0.5em 2.5em;
+    border-radius: 5px;
+}
+.primary_button:disabled {
+    background-color:#CACBCD;
+    color:darkslategray;
+}
